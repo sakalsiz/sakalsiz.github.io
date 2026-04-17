@@ -1,0 +1,20 @@
+[package]
+name = "bbs-build"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Static site generator for BBS-style web pages"
+
+[[bin]]
+name = "bbs-build"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+regex.workspace = true
+serde.workspace = true
+serde_yml.workspace = true
+walkdir.workspace = true

@@ -1,0 +1,119 @@
+# BBS.css Site Configuration
+# This file defines your BBS identity, pages, and structure.
+
+site:
+  name: "Mustafa's BBS"
+  tagline: "Founder * Builder * Data Infrastructure * BBS Nostalgist"
+  location: "California, USA"
+  phone: "+1-408-555-0142"
+  sysop: "Mustafa"
+  baud: 14400
+  nodes: 1
+  theme: default
+
+# Modem/terminal settings shown in the Terminate intro
+terminal:
+  software: "Terminate 5.0"
+  com_port: "COM1"
+  modem: "US Robotics Sportster 33.6"
+  emulation: "ANSI-BBS"
+  parity: "8N1"
+
+# Header art - reference a .ans file or use inline ASCII.
+# Inline color tags: {color}text{/} where color is one of:
+#   black blue green cyan red magenta brown gray
+#   lightblue lightgreen lightcyan lightred lightmagenta yellow white
+# Untagged characters fall back to the outer header color (blue).
+header:
+  type: inline
+  # Available: figlet, inline, file
+  # If file: path to a .ans or .txt file
+  # If figlet: auto-generate from site.sysop name
+  art: |
+    ╔══════════════════════════════════════════════════════════════════════════════╗
+    ║ {gray}▄▄▄▄▄▄{/}  {lightcyan}███╗   ███╗██╗   ██╗███████╗████████╗ █████╗ ███████╗ █████╗{/}  {gray}▄▄▄▄▄▄{/} ║
+    ║ {gray}██████{/}  {lightcyan}████╗ ████║██║   ██║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗{/} {gray}██████{/} ║
+    ║ {gray}▀▀▀▀▀▀{/}  {white}██╔████╔██║██║   ██║███████╗   ██║   ███████║█████╗  ███████║{/} {gray}▀▀▀▀▀▀{/} ║
+    ║ {gray}██████{/}  {cyan}██║╚██╔╝██║██║   ██║╚════██║   ██║   ██╔══██║██╔══╝  ██╔══██║{/} {gray}██████{/} ║
+    ║ {gray}▀▀▀▀▀▀{/}  ██║ ╚═╝ ██║╚██████╔╝███████║   ██║   ██║  ██║██║     ██║  ██║ {gray}▀▀▀▀▀▀{/} ║
+    ║         ╚═╝     ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝        ║
+    ║{gray}──────────────────────────────────────────────────────────────────────────────{/}║
+    ║  {yellow}Founder{/} {gray}·{/} {lightgreen}Builder{/} {gray}·{/} {lightcyan}Data Infrastructure{/} {gray}·{/} {lightmagenta}BBS Nostalgist{/}                    ║
+    ║  {gray}California, USA                              Node 1 of 1 ─  14400 baud{/}      ║
+    ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# Main menu definition
+# Each item has: key (hotkey), label, target (page id or action)
+menu:
+  - key: A
+    label: About Me
+    target: about
+  - key: P
+    label: Projects
+    target: projects
+  - key: S
+    label: "Skills & Stack"
+    target: skills
+  - key: L
+    label: "Links & Contact"
+    target: links
+  - key: G
+    label: Guestbook
+    target: guestbook
+  - key: F
+    label: File Area
+    target: filearea
+  - separator: true
+  - key: B
+    label: Blog
+    target: blog
+  - separator: true
+  - key: Q
+    label: "Quit / Return"
+    action: quit
+
+# Pages reference markdown files in content/pages/
+pages:
+  about: pages/about.md
+  projects: pages/projects.md
+  skills: pages/skills.md
+  links: pages/links.md
+  guestbook: pages/guestbook.md
+  filearea: pages/filearea.md
+
+# Blog settings
+blog:
+  posts_dir: blog/
+  posts_per_page: 10
+  date_format: "%Y-%m-%d"
+
+# Quit sequence messages.
+# Placeholders the runtime understands:
+#   {caller}   random four-digit caller number
+#   {minutes}  random session length in minutes
+#
+# The runtime applies a per-position color palette and timing curve so the
+# pacing matches the original BBS quit screen. If you reorder or add messages,
+# they keep working but the timing/color palette restarts from the top.
+quit:
+  messages:
+    - "Are you sure you want to leave?"
+    - "Really? The SysOp spent HOURS on this."
+    - "Fine. Logging you off..."
+    - "Saving your preferences... (just kidding, there are none)"
+    - "Uploading your browsing habits to FidoNet... :-)"
+    - "Sending your phone number to every BBS in Zone 1..."
+    - "OK OK, I'm not doing any of that."
+    - "Thanks for calling! You were caller #{caller}"
+    - "Time online: {minutes} minutes"
+    - "NO CARRIER"
+    - "....but wait. You can't actually leave a website\n by pressing Quit on the website. Think about it."
+    - "Press [R] or click here to redial, you silly caller."
+
+# Sound effects
+sounds:
+  enabled: true
+  dial_tones: true
+  ring: true
+  modem_negotiation: true
+  disconnect: true
