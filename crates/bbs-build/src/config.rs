@@ -49,7 +49,7 @@ pub struct Site {
     pub base_url: Option<String>,
 }
 
-fn default_baud() -> u32 { 115200 }
+fn default_baud() -> u32 { 14400 }
 fn default_nodes() -> u32 { 1 }
 
 #[derive(Debug, Default, Deserialize)]

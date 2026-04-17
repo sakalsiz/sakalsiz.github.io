@@ -15,7 +15,7 @@ site:
 terminal:
   software: "Terminate 5.0"
   com_port: "COM1"
-  modem: "US Robotics Sportster 33.6"
+  modem: "Hayes Smartmodem 14400"
   emulation: "ANSI-BBS"
   parity: "8N1"
 

@@ -153,7 +153,7 @@
       playModemNoise(3.5);
     }, 6000);
     setTimeout(function () {
-      setLog(4, 'CONNECT 115200/ARQ/V.34/LAPM/V.42bis', 'G');
+      setLog(4, 'CONNECT 14400/ARQ/V.32bis/LAPM/V.42bis', 'G');
       setDialStatus('Connected!', 'G');
     }, 8500);
 

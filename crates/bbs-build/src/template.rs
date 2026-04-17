@@ -564,7 +564,7 @@ struct PageMeta {
 
 const STATUS_INTRO: &str = " ALT-D Dial │ ALT-H Hangup │ ALT-X Exit │ F1 Phonebook";
 const STATUS_CONNECTED: &str =
-    " ALT-H Help │ ALT-Z Hangup │ 115200,8N1 │ ANSI │ Node 1 │ bbs-build";
+    " ALT-H Help │ ALT-Z Hangup │ 14400,8N1 │ ANSI │ Node 1 │ bbs-build";
 
 fn wrap_html(meta: &PageMeta, body: &str) -> String {
     format!(
