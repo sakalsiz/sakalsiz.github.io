@@ -79,9 +79,6 @@ ever built.{/}
 
 ---
 
- {lightcyan}▓▓{/} {white}GitHub{/}
-    [github.com/sakalsiz](https://github.com/sakalsiz)
- {lightcyan}▓▓{/} {white}LinkedIn{/}
-    [linkedin.com/in/sakalsiz](https://linkedin.com/in/sakalsiz)
- {lightcyan}▓▓{/} {white}X{/}
-    [x.com/sakalsiz](https://x.com/sakalsiz)
+ {lightcyan}▓▓{/} {white}GitHub{/}    [github.com/sakalsiz](https://github.com/sakalsiz)
+ {lightcyan}▓▓{/} {white}LinkedIn{/}  [linkedin.com/in/sakalsiz](https://linkedin.com/in/sakalsiz)
+ {lightcyan}▓▓{/} {white}X{/}         [x.com/sakalsiz](https://x.com/sakalsiz)
