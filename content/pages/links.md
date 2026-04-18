@@ -7,13 +7,13 @@ description: Find Mustafa on GitHub, LinkedIn, and X. Same handle everywhere.
 
 Same handle everywhere. {yellow}sakalsiz{/}.
 
- {lightgreen}▓▓{/} {white}GitHub{/} {gray}- code, projects, the actual work{/}
+ {lightgreen}▓▓{/} {white}GitHub{/} {gray}- code, projects, work{/}
     [github.com/sakalsiz](https://github.com/sakalsiz)
 
- {lightcyan}▓▓{/} {white}LinkedIn{/} {gray}- resume, work history, recruiter bait{/}
+ {lightcyan}▓▓{/} {white}LinkedIn{/} {gray}- resume, work history{/}
     [linkedin.com/in/sakalsiz](https://linkedin.com/in/sakalsiz)
 
- {lightmagenta}▓▓{/} {white}X (Twitter){/} {gray}- short thoughts, mostly tech{/}
+ {lightmagenta}▓▓{/} {white}X (Twitter){/} {gray}- short thoughts{/}
     [x.com/sakalsiz](https://x.com/sakalsiz)
 
 ---

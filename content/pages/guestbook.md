@@ -15,8 +15,10 @@ In the meantime, you can reach me through any of the channels on the
 
 > Old guestbook entries are archived. Some highlights:
 
-  {lightcyan}» {/}{white}TermFan_92:{/} {gray}"Best dial-up sounds since BBSes died."{/}
-  {lightcyan}» {/}{white}AmberCRT:{/}  {gray}"You forgot the file area. 1/10."{/}
+  {lightcyan}» {/}{white}TermFan_92:{/} {gray}"Best dial-up sounds
+    since BBSes died."{/}
+  {lightcyan}» {/}{white}AmberCRT:{/} {gray}"You forgot the file
+    area. 1/10."{/}
   {lightcyan}» {/}{white}Anonymous:{/} {gray}"NO CARRIER lol"{/}
 
 ---

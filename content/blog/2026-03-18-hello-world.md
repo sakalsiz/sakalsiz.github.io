@@ -69,7 +69,8 @@ the modern web has lost:
 
 ## The stack
 
-The site is built with {cyan}bbs-build{/}, a Rust CLI I wrote. It reads markdown and a YAML config,
+The site is built with {cyan}bbs-build{/}, a Rust CLI I wrote.
+It reads markdown and a YAML config,
 renders everything to BBS-style inline-span HTML, and outputs one
 page per URL with proper SEO metadata. The modem sounds are
 synthesized in real time via the Web Audio API. The font is PxPlus

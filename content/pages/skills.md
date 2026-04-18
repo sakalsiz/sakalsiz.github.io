@@ -12,7 +12,7 @@ A working list. Subject to revision when something better shows up.
 - {yellow}Rust{/} {gray}- current obsession, built this site with it{/}
 - {lightgreen}Java{/} {gray}- two decades of it, still pays the bills{/}
 - {lightcyan}TypeScript{/} {gray}- the parts of the web you can't avoid{/}
-- {white}Python{/} {gray}- for data work, scripting, and tying things together{/}
+- {white}Python{/} {gray}- data work, scripting, glue code{/}
 - {lightred}SQL{/} {gray}- in all its dialects, mostly Postgres and DuckDB{/}
 
 ## Data infrastructure

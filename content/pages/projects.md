@@ -16,7 +16,8 @@ A few things I've built or am building.
     Rust-based, built on Apache DataFusion.
     Distributed. Spec-driven. Built for scale.
 
- {lightmagenta}▓▓{/} {white}Internal Tooling Portal{/} {gray}- Cloudflare Stack{/}
+ {lightmagenta}▓▓{/} {white}Internal Tooling Portal{/}
+    {gray}Cloudflare Stack{/}
     Claude-powered internal tools.
     Pages + Workers + Access + D1.
     Zero-trust SSO for the team.
