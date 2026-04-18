@@ -1,8 +1,8 @@
 ---
 title: "Telnet BBSes: The Dial Tone Goes Digital"
 date: 2026-04-17
-tags: [bbs, telnet, mutt, history]
-description: When the modem era ended, BBSes tried to survive on Telnet. Many of them borrowed their terminal code from an unlikely source. The email client Mutt.
+tags: [bbs, telnet, mud, history]
+description: When the modem era ended, BBSes tried to survive on Telnet. The terminal code that kept them alive was borrowed from an unlikely neighbor. MUD clients.
 ---
 
 By {yellow}1996{/} the writing was on the wall. The web was
@@ -56,42 +56,50 @@ Windows had a basic Telnet client built in. It worked, but it
 mangled ANSI art. Colors were wrong. Box characters did not
 render. It was ugly.
 
-The BBS scene needed a proper terminal. And a surprising amount
-of the code that powered these terminals came from one place.
+The BBS scene needed a proper terminal. And the code that
+solved this problem came from an unlikely neighbor.
 
-## The Mutt connection
+## The MUD connection
 
-{white}Mutt{/} was an email client for Unix terminals. Written
-in {yellow}C{/}, released in {yellow}1995{/} by Michael Elstrott.
-It was small, fast, and most importantly it had a solid terminal
-handling layer.
+{white}MUDs{/} (Multi-User Dungeons) had been running on Telnet
+since the late {yellow}1980s{/}. Text-based RPGs where dozens of
+players explored the same world simultaneously. They were the
+MMOs before MMOs existed.
 
-Mutt's {lightcyan}strstrstrstr{/} code handled:
+MUD players needed clients that could handle the exact same
+problems BBS callers now faced:
 
- {green}▓▓{/} {white}ANSI escape sequence parsing{/}. The same
-    CSI sequences that BBSes used for color and cursor movement.
- {green}▓▓{/} {white}Terminal resizing{/}. Detecting and adapting
-    to window size changes.
+ {green}▓▓{/} {white}Telnet connection management{/}. Connect to
+    a remote host over TCP, keep the session alive, handle
+    disconnects gracefully.
+ {green}▓▓{/} {white}ANSI escape sequence parsing{/}. MUDs used
+    the same CSI color codes that BBSes did. Bold, blink,
+    foreground, background, cursor positioning.
  {green}▓▓{/} {white}Character set handling{/}. Including the
-    CP437 to UTF-8 mapping that was critical for box-drawing
-    characters.
+    CP437 box-drawing characters that ANSI art depended on.
  {green}▓▓{/} {white}Keyboard input processing{/}. Translating
-    terminal key codes into usable input.
+    terminal key sequences into usable input, handling function
+    keys and arrow keys properly.
 
-This was exactly the hard part of building a BBS terminal
-client. The BBS-specific parts (connection management, file
-transfer) were straightforward. The terminal emulation was the
-nightmare.
+By the mid-90s, MUD clients had already solved all of this.
+{yellow}zMUD{/} (1995) by Zugg Software was a polished Windows
+client with full ANSI color rendering, triggers, aliases, and
+scripting. {yellow}TinTin++{/} was the Unix equivalent, open
+source and battle-tested. {yellow}MUSHclient{/} handled ANSI
+and Telnet negotiations with precision.
 
-Developers building Telnet BBS clients looked at Mutt's
-terminal code and thought: {yellow}why rewrite this?{/}
+BBS terminal developers looked at MUD client code and thought:
+{yellow}why rewrite this?{/}
 
-{white}SyncTERM{/}, one of the most popular Telnet BBS clients,
-drew heavily on terminal handling patterns established in the
-Mutt/ncurses ecosystem. {white}NetRunner{/} and other Windows
-BBS terminals borrowed similar approaches. The ANSI parsing
-problem had been solved. Mutt was open source. The code was
-right there.
+The Telnet layer, the ANSI parser, the character set mapping,
+the input handler. MUD clients had been doing this for years.
+{white}SyncTERM{/}, {white}NetRunner{/}, and other Telnet BBS
+clients borrowed heavily from the patterns and sometimes the
+actual code that MUD clients had established.
+
+Two communities that had been running parallel text-mode
+worlds on opposite sides of the internet finally shared a
+codebase.
 
 ## What survived
 
