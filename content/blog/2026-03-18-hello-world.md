@@ -1,6 +1,6 @@
 ---
 title: "Hello World: Why I Built a BBS Homepage in 2026"
-date: 2026-04-14
+date: 2026-03-18
 tags: [bbs, nostalgia, web, personal]
 description: Why a founder in California built his personal homepage to look and sound like a 1993 bulletin board system. It starts with a kid in Alanya, Turkey.
 ---
