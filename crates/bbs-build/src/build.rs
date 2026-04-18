@@ -108,16 +108,15 @@ pub fn run(root: &Path, out: &Path) -> Result<()> {
         let post_dir = blog_out.join(&post.slug);
         fs::create_dir_all(&post_dir)?;
         let body_html = renderer.render(&post.body);
-        // Posts are sorted newest first. We follow the index ordering:
-        //   [P]rev  -> the post above this one in the index (newer)
-        //   [N]ext  -> the post below this one in the index (older)
-        // So that pressing N from post #1 advances to post #2 in the list.
-        let prev = if i > 0 { Some(&blog_posts[i - 1]) } else { None };
-        let next = if i + 1 < blog_posts.len() {
+        // Posts are sorted newest first. Navigation is chronological:
+        //   [N]ext  -> newer post (toward index 0)
+        //   [P]rev  -> older post (toward end of list)
+        let prev = if i + 1 < blog_posts.len() {
             Some(&blog_posts[i + 1])
         } else {
             None
         };
+        let next = if i > 0 { Some(&blog_posts[i - 1]) } else { None };
         let html = template::render_blog_post(
             &config,
             post,
