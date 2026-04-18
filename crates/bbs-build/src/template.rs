@@ -29,36 +29,66 @@ const INTRO_LOG_WIDTH: usize = 60;
 // ===========================================================================
 
 /// Landing page (`/`): full Terminate intro + main menu.
-pub fn render_landing(
-    config: &SiteConfig,
-    pages: &[RenderedPage],
-    posts: &[BlogPost],
-    renderer: &Renderer,
-) -> String {
-    let _ = (pages, posts);
-
-    let title = format!("{} - Node 1", config.site.name);
+/// Intro page (`/`): CRT monitor frame with Terminate dialer. After dial
+/// completes, JS navigates to `/main/`. This page has no BBS content.
+pub fn render_intro_page(config: &SiteConfig) -> String {
+    let title = format!("Connecting to {}...", config.site.name);
     let description = effective_description(config, None, None);
 
     let intro = render_intro(config);
-    let main = render_main_screen(config, renderer);
+    let statusbar = pad_to(STATUS_INTRO, 80);
     let body = format!(
         r#"
-{intro}
-{main}
-<div id="quit-screen" data-messages='{quit_json}'></div>
-<div id="statusbar" class="sb">{statusbar}</div>
+<div class="crt-frame">
+  <div class="crt-screen">
+    {intro}
+    <span class="crt-statusbar">{statusbar}</span>
+  </div>
+  <div class="crt-bezel"><span class="crt-led"></span><span class="crt-brand">VGA-14</span></div>
+</div>
 "#,
         intro = intro,
-        main = main,
-        quit_json = json_string_array(&config.quit.messages),
-        statusbar = STATUS_INTRO,
+        statusbar = statusbar,
     );
 
     wrap_html(&PageMeta {
         title,
         description,
-        canonical: "/".to_string(),
+        canonical: "/main/".to_string(),
+        og_type: "website",
+        og_title: config.site.name.clone(),
+    }, &body)
+}
+
+/// Main BBS page (`/main/`): header art + menu + prompt. No intro dialer.
+pub fn render_main_page(config: &SiteConfig, renderer: &Renderer) -> String {
+    let title = format!("{} - Node 1", config.site.name);
+    let description = effective_description(config, None, None);
+
+    let header = render_header_art(config, renderer);
+    let menu = render_menu_box(config);
+    let prompt = render_prompt();
+    let body = format!(
+        r#"
+<div id="t" tabindex="0">{header}
+
+{menu}
+
+{prompt}</div>
+<div id="quit-screen" data-messages='{quit_json}'></div>
+<div id="statusbar" class="sb">{statusbar}</div>
+"#,
+        header = header,
+        menu = menu,
+        prompt = prompt,
+        quit_json = json_string_array(&config.quit.messages),
+        statusbar = STATUS_CONNECTED,
+    );
+
+    wrap_html(&PageMeta {
+        title,
+        description,
+        canonical: "/main/".to_string(),
         og_type: "website",
         og_title: config.site.name.clone(),
     }, &body)
@@ -227,7 +257,7 @@ pub fn render_blog_post(
         span("d", "]log index"),
     ));
     nav_parts.push(format!(
-        "<a class=\"ml\" data-menu-item href=\"/\" data-key=\"M\">{}{}{}</a>",
+        "<a class=\"ml\" data-menu-item href=\"/main/\" data-key=\"M\">{}{}{}</a>",
         span("d", "["),
         span("Y", "M"),
         span("d", "]enu"),
@@ -330,6 +360,7 @@ fn render_intro(config: &SiteConfig) -> String {
 
     let intro = format!(
         r#"<div id="intro" data-phone-digits="{phone_digits_attr}">
+
 {c_top}
 {c_pipe}{header_row}{c_pipe_end}
 {c_mid}
@@ -351,8 +382,6 @@ fn render_intro(config: &SiteConfig) -> String {
 {c_pipe} <span id="modem-log3" class="d">{empty_log}</span> {c_pipe_end}
 {c_pipe} <span id="modem-log4" class="d">{empty_log}</span> {c_pipe_end}
 {c_bot}
-
-<span class="d"> ALT-D Dial │ ALT-H Hangup │ ALT-X Exit │ F1 Phonebook</span>
 </div>"#,
         phone_digits_attr = escape_attr(&phone_digits),
         c_top = span("c", &format!("╔{}╗", "═".repeat(INTRO_INNER))),
@@ -385,23 +414,6 @@ fn visible_text_settings(cfg: &SiteConfig) -> String {
         com = no_empty(&term.com_port, "COM1"),
         speed = cfg.site.baud,
         parity = no_empty(&term.parity, "8N1"),
-    )
-}
-
-/// Render the main BBS screen: header art + menu box + prompt with cursor.
-fn render_main_screen(config: &SiteConfig, renderer: &Renderer) -> String {
-    let header = render_header_art(config, renderer);
-    let menu = render_menu_box(config);
-    let prompt = render_prompt();
-    format!(
-        r#"<div id="t" tabindex="0" style="display:none">{header}
-
-{menu}
-
-{prompt}</div>"#,
-        header = header,
-        menu = menu,
-        prompt = prompt,
     )
 }
 
@@ -522,7 +534,7 @@ fn render_page_nav(
     // arrow-nav rotation. Sub-pages don't need a focus highlight on their
     // single back-link.
     let menu_link = format!(
-        "<a class=\"ml\" href=\"/\" data-key=\"M\">{lb}{ks}{rb}</a>",
+        "<a class=\"ml\" href=\"/main/\" data-key=\"M\">{lb}{ks}{rb}</a>",
         lb = span("d", "["),
         ks = span("Y", "M"),
         rb = span("d", "]enu"),
@@ -533,9 +545,11 @@ fn render_page_nav(
     nav
 }
 
+
+
 fn render_page_footer() -> String {
     format!(
-        "{}\n <a class=\"ml\" href=\"/\" data-key=\"M\">{press} {bracket}{key}{bracket_close} {tail}</a>\n\n{prompt}",
+        "{}\n <a class=\"ml\" href=\"/main/\" data-key=\"M\">{press} {bracket}{key}{bracket_close} {tail}</a>\n\n{prompt}",
         span("c", &"─".repeat(RULE_WIDTH)),
         press = span("Y", "Press"),
         bracket = span("W", "["),

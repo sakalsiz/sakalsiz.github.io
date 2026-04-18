@@ -157,76 +157,22 @@
       setDialStatus('Connected!', 'G');
     }, 8500);
 
+    // After dial completes, navigate to the main BBS page.
     setTimeout(function () {
-      var intro = document.getElementById('intro');
-      var t = document.getElementById('t');
-      if (intro) intro.style.display = 'none';
-      if (t) {
-        t.style.display = '';
-        t.style.animation = 'poweron 1.5s ease-out';
-        t.focus();
-      }
-      // Strip ?redial=1 from the address bar so a subsequent in-site nav
-      // back to / doesn't replay the dialer.
-      try {
-        if (window.location.search.indexOf('redial=1') !== -1 &&
-            window.history && window.history.replaceState) {
-          window.history.replaceState({}, '', window.location.pathname);
-        }
-      } catch (e) {}
-      // Re-init menu nav now that #t is visible and laid out. The initial
-      // boot() call ran while the menu was display:none, so orientation
-      // detection returned wrong results.
-      initMenuNav();
+      window.location.href = '/main/';
     }, 9800);
-  }
-
-  // Decide whether to show the Terminate dialer on this load of the landing
-  // page. Dialer plays on:
-  //   - hard refresh (Cmd+R / F5)
-  //   - a truly fresh arrival (typed URL, bookmark, link from another site)
-  // Dialer is skipped on:
-  //   - in-site navigation (e.g. clicking [M]enu from /about/ back to /)
-  function shouldPlayDialer() {
-    // Explicit redial: ?redial=1 in the URL forces the dialer to play.
-    // Used by the quit-screen "redial" handler.
-    if (window.location.search.indexOf('redial=1') !== -1) return true;
-    // Hard reload: always play.
-    try {
-      var navs = performance.getEntriesByType && performance.getEntriesByType('navigation');
-      if (navs && navs[0] && navs[0].type === 'reload') return true;
-    } catch (e) {}
-    // Came from another page on this same site: skip the dialer.
-    if (document.referrer) {
-      try {
-        var ref = new URL(document.referrer);
-        if (ref.origin === window.location.origin) return false;
-      } catch (e) {}
-    }
-    // Default: fresh visit, no referrer, or external referrer — play it.
-    return true;
   }
 
   function bootIntro() {
     var intro = document.getElementById('intro');
-    var t = document.getElementById('t');
-    if (!intro) return; // not on landing page
-
-    if (!shouldPlayDialer()) {
-      intro.style.display = 'none';
-      if (t) t.style.display = '';
-      return;
-    }
-
+    if (!intro) return; // not on intro page
     var phoneAttr = intro.getAttribute('data-phone-digits') || '';
     var digits = phoneAttr.split('').filter(function (c) { return c >= '0' && c <= '9'; })
       .map(function (c) { return parseInt(c, 10); });
     intro.addEventListener('click', function () { startDial(digits); });
     document.addEventListener('keydown', function (e) {
-      if (!dialStarted && intro.style.display !== 'none') {
-        startDial(digits);
-      }
-    }, { once: false });
+      if (!dialStarted) startDial(digits);
+    });
   }
 
   // ===================================================================
@@ -254,7 +200,6 @@
     // Prime the audio context inside the user gesture so the deferred
     // disconnect tone (fired ~10s later via setTimeout) is allowed to play.
     primeAudio();
-    if (intro) intro.style.display = 'none';
     if (t) t.style.display = 'none';
     qs.style.display = 'block';
     qs.innerHTML = '';
@@ -281,7 +226,7 @@
         if (isLast) {
           span.classList.add('ml');
           span.style.cursor = 'pointer';
-          span.onclick = function () { window.location.href = '/?redial=1'; };
+          span.onclick = function () { window.location.href = '/'; };
         }
         qs.appendChild(span);
       }, delay);
@@ -431,14 +376,11 @@
   function bindKeys() {
     document.addEventListener('keydown', function (e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      // While intro is on screen, don't intercept.
-      var intro = document.getElementById('intro');
-      if (intro && intro.style.display !== 'none') return;
       var qs = document.getElementById('quit-screen');
       if (qs && qs.style.display === 'block') {
         if (e.key.toUpperCase() === 'R') {
           e.preventDefault();
-          window.location.href = '/?redial=1';
+          window.location.href = '/';
         }
         return;
       }
@@ -447,11 +389,12 @@
       // Backspace/Esc-with-buffer feed the input rather than the menu.
       if (tryBlogNumberKey(e)) return;
 
-      // Esc anywhere except the landing page goes back to /.
+      // Esc goes back to main menu (except when already on /main/ or /).
       if (e.key === 'Escape') {
-        if (window.location.pathname !== '/') {
+        var p = window.location.pathname;
+        if (p !== '/' && p !== '/main/') {
           e.preventDefault();
-          window.location.href = '/';
+          window.location.href = '/main/';
           return;
         }
       }

@@ -76,10 +76,17 @@ pub fn run(root: &Path, out: &Path) -> Result<()> {
     let blog_posts = load_blog_posts(&blog_dir)
         .with_context(|| format!("failed to load blog posts from {}", blog_dir.display()))?;
 
-    // ===== Write landing page (with full intro dialer) =====
-    let landing_html = template::render_landing(&config, &rendered_pages, &blog_posts, &renderer);
-    fs::write(out.join("index.html"), landing_html)?;
-    println!("    wrote index.html (landing)");
+    // ===== Write intro page (CRT dialer at /) =====
+    let intro_html = template::render_intro_page(&config);
+    fs::write(out.join("index.html"), intro_html)?;
+    println!("    wrote index.html (intro)");
+
+    // ===== Write main BBS page (header + menu at /main/) =====
+    let main_dir = out.join("main");
+    fs::create_dir_all(&main_dir)?;
+    let main_html = template::render_main_page(&config, &renderer);
+    fs::write(main_dir.join("index.html"), main_html)?;
+    println!("    wrote main/index.html");
 
     // ===== Write per-page pages =====
     for page in &rendered_pages {

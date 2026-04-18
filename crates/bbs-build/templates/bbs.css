@@ -70,6 +70,82 @@ body::before {
 }
 
 #t { padding-bottom: 28px; outline: none; }
+/* CRT monitor frame around the Terminate intro dialer */
+.crt-frame {
+  max-width: calc(80ch + 52px); /* screen width + bezel padding */
+  width: fit-content;
+  margin: 30px auto;
+  background: linear-gradient(180deg, #c8c0b0 0%, #b8b0a0 40%, #a8a090 100%);
+  border-radius: 24px;
+  padding: 24px 24px 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -1px 2px rgba(0,0,0,0.15),
+    0 0 0 2px #8a8070,
+    0 12px 50px rgba(0,0,0,0.7);
+  position: relative;
+}
+.crt-screen {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow:
+    inset 0 0 80px rgba(200,200,180,0.03),   /* faint warm center glow — aged phosphor */
+    inset 0 0 50px rgba(0,0,0,0.4);
+  /* 80 columns x 25 rows: authentic VGA text mode dimensions */
+  width: 80ch;
+  height: calc(25 * 1.2em);
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centers #intro horizontally (64ch in 80ch) */
+}
+.crt-screen #intro {
+  /* No display:flex here — that would break white-space:pre line breaks */
+  margin: auto 0;           /* vertical centering via auto margins */
+  padding: 0;
+  max-width: none;
+}
+/* Status bar: last row of the CRT, full 80ch wide, cyan background.
+   Does NOT use .sb so position:fixed from that class never applies here. */
+.crt-statusbar {
+  width: 80ch;
+  margin-top: auto;          /* pin to bottom of the CRT screen */
+  flex-shrink: 0;
+  white-space: pre;
+  font: 20px/1.2 'PxPlus', monospace;   /* must match #intro line-height exactly */
+  text-align: left;
+  padding: 0;
+  background: var(--cyan);
+  color: #000;
+}
+.crt-bezel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px 0;
+  white-space: normal;
+}
+.crt-led {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green), 0 0 14px rgba(0,170,0,0.3);
+  animation: led-pulse 3s ease-in-out infinite;
+}
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.crt-brand {
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  color: #6a6050;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
 #intro { cursor: pointer; }
 #quit-screen { display: none; }
 
@@ -133,10 +209,14 @@ a.ml { display: inline; }
    font-size), so font-size = (viewport - padding) / 41 fits 82 chars exactly.
    Minimum 8px to stay readable on very small screens. */
 @media (max-width: 700px) {
-  #intro, #t, #quit-screen, .sb {
+  #intro, #t, #quit-screen, .sb, .crt-statusbar {
     font-size: max(8px, calc((100vw - 16px) / 41));
   }
   #t, #intro, #quit-screen { padding: 4px 8px; }
+  .crt-frame { padding: 12px 12px 8px; border-radius: 16px; margin: 10px auto; }
+  .crt-screen { border-radius: 10px; }
+  .crt-bezel { padding: 4px 10px 0; }
+  .crt-brand { font-size: 8px; letter-spacing: 2px; }
   #t { padding-bottom: 24px; }
 
   /* Content text (blog posts, pages) wraps on mobile so paragraphs don't
