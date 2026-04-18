@@ -36,9 +36,9 @@ I had three options on the table:
  {lightgreen}▓▓{/} {white}Go{/}: simple, fast, fine for SSGs.
     No real reason to pick it over the next one.
 
- {yellow}▓▓{/} {white}Rust{/}: I wanted to learn it.
+ {yellow}▓▓{/} {white}Rust{/}: I wanted to use it.
 
-Static site generators are a canonical Rust learning project. The
+Static site generators are a great fit for Rust. The
 scope is contained. The output is immediately visible. Every piece
 touches a core concept: ownership, error handling with `Result`,
 serde for config, `regex` for the markdown engine, `include_str!`
