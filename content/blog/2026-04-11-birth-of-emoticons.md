@@ -1,6 +1,6 @@
 ---
 title: "The Birth of :-) and :-O"
-date: 2026-03-20
+date: 2026-04-11
 tags: [bbs, emoticons, history, language]
 description: How a 1982 Carnegie Mellon professor invented the smiley emoticon, and how BBSes turned three characters into a global written language.
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Private BBSes: The Boards You Couldn't Find"
-date: 2026-04-07
+date: 2026-04-05
 tags: [bbs, underground, scene]
 description: Members-only BBSes, elite boards, scene boards, and the systems whose phone numbers you had to earn.
 ---

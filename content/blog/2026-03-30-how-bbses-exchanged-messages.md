@@ -1,6 +1,6 @@
 ---
 title: "How BBSes Actually Exchanged Messages"
-date: 2026-04-01
+date: 2026-03-30
 tags: [bbs, fidonet, networking]
 description: The nightly mechanical reality of moving mail between BBSes - phone bills, ZMH, packets, compression, and 28.8k of pure determination.
 ---

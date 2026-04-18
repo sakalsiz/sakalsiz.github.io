@@ -1,6 +1,6 @@
 ---
 title: "Telnet BBSes: The Dial Tone Goes Digital"
-date: 2026-04-17
+date: 2026-04-15
 tags: [bbs, telnet, mud, history]
 description: When the modem era ended, BBSes tried to survive on Telnet. The terminal code that kept them alive was borrowed from an unlikely neighbor. MUD clients.
 ---

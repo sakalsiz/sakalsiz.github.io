@@ -1,6 +1,6 @@
 ---
 title: "FidoNet Goes Local: HitNet, MausNet, and the National Clones"
-date: 2026-04-09
+date: 2026-04-07
 tags: [bbs, fidonet, networking, international]
 description: How countries around the world built their own FidoNet-compatible networks with local languages, local culture, and local phone rates.
 ---

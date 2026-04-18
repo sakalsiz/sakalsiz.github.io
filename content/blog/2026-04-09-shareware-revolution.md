@@ -1,6 +1,6 @@
 ---
 title: "The Shareware Revolution"
-date: 2026-04-11
+date: 2026-04-09
 tags: [shareware, bbs, history]
 description: In the 1980s software came in shrink-wrapped boxes at $300 a pop. Then BBSes gave shareware authors something no one else could. Free distribution to millions.
 ---
