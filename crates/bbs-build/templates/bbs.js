@@ -389,14 +389,17 @@
       // Backspace/Esc-with-buffer feed the input rather than the menu.
       if (tryBlogNumberKey(e)) return;
 
-      // Esc goes back to main menu (except when already on /main/ or /).
+      // Esc navigates up one level: blog post → /blog/, page → /main/.
+      // On /main/ or / there's nowhere to go, so do nothing.
       if (e.key === 'Escape') {
-        var p = window.location.pathname;
-        if (p !== '/' && p !== '/main/') {
-          e.preventDefault();
-          window.location.href = '/main/';
-          return;
-        }
+        var p = window.location.pathname.replace(/\/+$/, '') || '/';
+        if (p === '/' || p === '/main') return;
+        var parent = p.substring(0, p.lastIndexOf('/'));
+        // Top-level pages like /about → go to /main
+        if (!parent || parent === '') parent = '/main';
+        e.preventDefault();
+        window.location.href = parent + '/';
+        return;
       }
 
       // Menu navigation keys.
