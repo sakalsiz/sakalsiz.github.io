@@ -35,6 +35,14 @@ turned programming from something I did alone into something I did
 with other people. It showed me that computers were not just
 machines you typed into. They were {white}bridges{/}.
 
+Everything I was doing on BBSes, I was self-taught. But the more
+I learned, the more I realized how much I did not know. The BBS
+world pushed me to get into {white}Computer Science{/}. I wanted
+a top school so I could get the most out of this computer and
+software world that had already taken over my life. The kid in
+Alanya who taught himself GW-BASIC went and got a proper CS
+degree, and the BBS had everything to do with it.
+
 ## Why a BBS homepage in 2026
 
 Because I wanted to build a tribute to that era. The technologies
@@ -61,8 +69,7 @@ the modern web has lost:
 
 ## The stack
 
-The site is built with {cyan}bbs-build{/}, a Rust CLI I wrote as
-a way to learn the language. It reads markdown and a YAML config,
+The site is built with {cyan}bbs-build{/}, a Rust CLI I wrote. It reads markdown and a YAML config,
 renders everything to BBS-style inline-span HTML, and outputs one
 page per URL with proper SEO metadata. The modem sounds are
 synthesized in real time via the Web Audio API. The font is PxPlus
