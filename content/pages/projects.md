@@ -14,8 +14,7 @@ A few things I've built or am building.
 
  {lightcyan}▓▓{/} {white}DataGlot{/} {gray}- Federated Query Engine{/}
     Rust-based, built on Apache DataFusion.
-    Distributed. Spec-driven. Zero handwritten code.
-    AI agents implement, humans review.
+    Distributed. Spec-driven. Built for scale.
 
  {lightmagenta}▓▓{/} {white}Internal Tooling Portal{/} {gray}- Cloudflare Stack{/}
     Claude-powered internal tools.
