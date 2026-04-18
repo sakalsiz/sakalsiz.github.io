@@ -44,13 +44,13 @@ this:
 
  {gray}1984:{/} {yellow}300 baud{/}. Bell 103. A page of text
        took a minute. Most early FidoNet ran on these.
- {gray}1986:{/} {yellow}1200/2400 baud{/}. Hayes Smartmodem.
+ {gray}1985:{/} {yellow}1200/2400 baud{/}. Hayes Smartmodem 2400.
        Text was readable in real time. The real start of FidoNet's
        growth.
- {gray}1991:{/} {yellow}9600 baud{/}. V.32. Real graphics could
+ {gray}1989:{/} {yellow}9600 baud{/}. V.32. Real graphics could
        transfer in reasonable time.
- {gray}1994:{/} {yellow}14.4k{/}. V.32bis with V.42bis compression.
-       Big files became practical. Door games had backgrounds.
+ {gray}1992:{/} {yellow}14.4k{/}. V.32bis. With V.42bis compression
+       on top, big files became practical. Door games had backgrounds.
  {gray}1996:{/} {yellow}28.8k / 33.6k{/}. V.34. The peak of FidoNet.
  {gray}1998:{/} {yellow}56k{/}. V.90. By now most users were
        leaving BBSes for the web.

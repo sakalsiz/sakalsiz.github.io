@@ -26,8 +26,8 @@ To run a node you needed:
     you could leave plugged into the modem during ZMH).
  {lightgreen}▓▓{/} A {white}computer{/} that ran 24/7. Usually a
     386 or 486 in the basement.
- {lightgreen}▓▓{/} {white}Mailer software{/}: BinkleyTerm, Front
-    Door, FrontDoor, T-Mail, InterMail.
+ {lightgreen}▓▓{/} {white}Mailer software{/}: BinkleyTerm, FrontDoor,
+    T-Mail, InterMail.
  {lightgreen}▓▓{/} {white}Tosser software{/}: tossed incoming
     mail packets into the right echo conferences. FastEcho,
     Squish, Crashmail.
@@ -43,9 +43,10 @@ assigned a sub-address. Points couldn't accept calls from random
 people. They polled their {lightcyan}boss node{/} on a schedule to
 pick up mail addressed to them.
 
-Point software was lighter than full BBS software. Examples:
-{lightcyan}Tobtraz{/}, {lightcyan}Time-Ed{/}, {lightcyan}OPUS Point{/},
-and most popular of all, {white}CrossPoint{/} on DOS.
+Point software was lighter than full BBS software. The most
+popular was {white}CrossPoint{/} on DOS, especially in the
+German-speaking FidoNet where it had around 25,000 users at
+its peak.
 
 A point could read echomail offline, write replies, and upload
 them all at once during a single short call to the boss node. This

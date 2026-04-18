@@ -1,5 +1,5 @@
 ---
-title: "FidoNet Goes Local: HitNet, RBBSNet, and the National Clones"
+title: "FidoNet Goes Local: HitNet, MausNet, and the National Clones"
 date: 2026-04-09
 tags: [bbs, fidonet, networking, international]
 description: How countries around the world built their own FidoNet-compatible networks with local languages, local culture, and local phone rates.
@@ -45,12 +45,10 @@ Some HitNet nodes also had FidoNet addresses and acted as
 into HitNet and Turkish echoes back out to the wider FidoNet.
 Two networks, bridged at a few points.
 
-## Russia: RBBSNet and Langstrumpf
+## Russia
 
-Russia had several competing networks. {yellow}RBBSNet{/} was one
-of the earliest. {yellow}Langstrumpf Net{/} (yes, named after Pippi
-Longstocking) was another. Russia's phone infrastructure in the
-early 1990s was unreliable, which made BBS networking harder and
+Russia had a growing BBS scene through the early 1990s despite
+unreliable phone infrastructure. That made networking harder and
 the community tighter.
 
 Russian BBS culture had a distinctive flavor: heavy {lightcyan}
@@ -69,13 +67,13 @@ nodes were on both.
 
 The German BBS scene was also home to {lightgreen}CrossPoint{/},
 the most popular offline reader in Europe, written by
-{white}Peter Straubel{/}. CrossPoint supported FidoNet, MausNet,
+{white}Peter Mandrella{/}. CrossPoint supported FidoNet, MausNet,
 USENET, and internet email all in one interface.
 
 ## Brazil: RBT and Fido Zone 4
 
 Brazil was Zone 4 in FidoNet's official numbering but also spawned
-local networks. {yellow}RBT{/} (Rede Brasileira de Telematica) was
+local networks. {yellow}RBT{/} (Rede Brasileira de TeleInformatica) was
 one of the earliest. Brazilian BBS culture was huge. By the mid-
 1990s Brazil had one of the largest BBS communities outside the
 United States, driven by affordable local phone calls and a young,
@@ -106,7 +104,8 @@ was self-contained and fiercely independent.
 
 Japan's BBS tradition was separate from FidoNet entirely. Systems
 like {yellow}PC-VAN{/} and {yellow}NIFTY-Serve{/} were commercial
-networks run by NEC and Fujitsu respectively. They were closer to
+networks run by NEC and Fujitsu (via Nifty Corporation, a joint
+venture with Nissho Iwai) respectively. They were closer to
 CompuServe than to FidoNet. But smaller hobbyist boards existed
 too, running Japanese-language message bases with {lightcyan}Shift-
 JIS encoding{/} and full-width characters.

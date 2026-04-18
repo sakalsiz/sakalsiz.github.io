@@ -109,7 +109,7 @@ But it survived. Some boards that went online in 1993 are
 
 The numbers tell the story:
 
- {yellow}1995{/} {gray}- estimated 60,000 BBSes in North America{/}
+ {yellow}1994{/} {gray}- estimated 60,000 BBSes in North America{/}
  {yellow}1998{/} {gray}- maybe 5,000 still active, half on Telnet{/}
  {yellow}2005{/} {gray}- a few hundred, almost all Telnet{/}
  {yellow}2026{/} {gray}- a stubborn few dozen, plus retro hobbyists{/}

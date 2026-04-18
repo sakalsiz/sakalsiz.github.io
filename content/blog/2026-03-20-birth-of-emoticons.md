@@ -51,9 +51,8 @@ Three characters. Solved a real problem. Spread instantly.
 
 The proposal escaped CMU and reached FidoNet within a couple of
 years. By the late 80s every BBS conference was full of them. By
-1990 they were so common that BBS message editors started having
-{yellow}macro shortcuts{/}: type `\smiley` and the editor would
-expand it to `:-)`.
+1990 they were so common that people used them without thinking
+about it. Three characters had become part of the language.
 
 The original two grew quickly into a vocabulary:
 
@@ -89,7 +88,7 @@ require head-tilting:
 
 Kaomoji read upright, used a wider character set, and were generally
 considered {white}more expressive{/} than the western style. They
-also predated emoji proper by twenty years.
+also predated emoji proper by about fifteen years.
 
 ## The descent into emoji
 

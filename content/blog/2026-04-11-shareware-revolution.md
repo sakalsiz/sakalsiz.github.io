@@ -6,11 +6,13 @@ description: How DOOM, Wolfenstein, and a thousand other programs reached millio
 ---
 
 In {yellow}December 1993{/}, a small Texas company called
-{white}id Software{/} uploaded a 2.4 MB file to a BBS in Wisconsin.
-Within twenty-four hours that file was on every BBS in North
-America. Within a week it had crashed the network at the University
-of Wisconsin so hard the admins {lightred}banned the game{/} from
-the campus.
+{white}id Software{/} uploaded a file to Software Creations BBS in
+Massachusetts and an FTP server at the University of Wisconsin-
+Madison. Within twenty-four hours it was on every BBS in North
+America. The download traffic at UW-Madison was so massive it
+crashed the network. Universities started {lightred}banning DOOM's
+multiplayer{/} from their LANs because it was eating all the
+bandwidth.
 
 The file was {lightcyan}DOOM1_0.ZIP{/}.
 
@@ -43,7 +45,7 @@ shareware before retail:
  {lightcyan}▓▓{/} {white}Commander Keen{/} - id Software, 1990-91.
  {lightcyan}▓▓{/} {white}Duke Nukem{/} - Apogee Software, 1991.
  {lightcyan}▓▓{/} {white}Jill of the Jungle{/} - Epic MegaGames, 1992.
- {lightcyan}▓▓{/} {white}Tyrian{/} - Eclipse, 1995.
+ {lightcyan}▓▓{/} {white}Tyrian{/} - Eclipse Software / Epic MegaGames, 1995.
  {lightcyan}▓▓{/} {white}WinZip{/} - Nico Mak Computing.
  {lightcyan}▓▓{/} {white}McAfee VirusScan{/} - the OG free antivirus.
  {lightcyan}▓▓{/} {white}Paint Shop Pro{/} - JASC.
