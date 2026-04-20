@@ -4,6 +4,9 @@ dist/
 # Rust build artifacts
 target/
 
+# Claude Code local state
+.claude/
+
 # OS junk
 .DS_Store
 Thumbs.db
