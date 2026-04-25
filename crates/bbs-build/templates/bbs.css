@@ -70,9 +70,12 @@ body::before {
 }
 
 #t { padding-bottom: 28px; outline: none; }
-/* CRT monitor frame around the Terminate intro dialer */
+/* CRT monitor frame around the Terminate intro dialer.
+   The screen is 80ch wide (authentic VGA text mode). The frame must be
+   wide enough that the screen doesn't butt right up against the bezel,
+   so its max-width carries a generous padding budget on top of 80ch. */
 .crt-frame {
-  max-width: calc(80ch + 52px); /* screen width + bezel padding */
+  max-width: calc(80ch + 88px); /* 80ch screen + 44px bezel on each side */
   width: fit-content;
   margin: 30px auto;
   background: linear-gradient(180deg, #c8c0b0 0%, #b8b0a0 40%, #a8a090 100%);
@@ -91,7 +94,7 @@ body::before {
   background: #0a0a0a;
   box-shadow:
     inset 0 0 80px rgba(200,200,180,0.03),   /* faint warm center glow — aged phosphor */
-    inset 0 0 50px rgba(0,0,0,0.4);
+    inset 0 0 30px rgba(0,0,0,0.4);          /* narrower edge vignette so content isn't swallowed */
   /* 80 columns x 25 rows: authentic VGA text mode dimensions */
   width: 80ch;
   height: calc(25 * 1.2em);
@@ -204,20 +207,73 @@ a:hover { color: var(--yellow); background: var(--blue); }
 a.ml { display: inline; }
 ::selection { background: var(--lblue); color: var(--white); }
 
-/* Mobile: scale the font so the widest element (80-char banner + 2ch padding)
-   fits the viewport. PxPlus has a 1:2 height:width ratio (8px wide at 16px
-   font-size), so font-size = (viewport - padding) / 41 fits 82 chars exactly.
-   Minimum 8px to stay readable on very small screens. */
+/* Mobile: treat the CRT's internal screen area as the real viewport.
+   The frame is sized to the window; the screen fills the frame's content
+   area; and the font-size is chosen so 80 characters fit inside that
+   screen width. This way the dialog (64ch) and status bar (80ch) are
+   always smaller than or equal to the actual screen, never overflowing
+   onto the bezel. */
 @media (max-width: 700px) {
-  #intro, #t, #quit-screen, .sb, .crt-statusbar {
+  /* Non-CRT pages (main menu, blog, content pages) */
+  #t, .sb {
     font-size: max(8px, calc((100vw - 16px) / 41));
   }
-  #t, #intro, #quit-screen { padding: 4px 8px; }
-  .crt-frame { padding: 12px 12px 8px; border-radius: 16px; margin: 10px auto; }
+  #t { padding: 4px 8px; padding-bottom: 24px; }
+
+  /* 1. Pin the frame to the window (minus a small outer gap). */
+  .crt-frame {
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+    padding: 10px;
+    border-radius: 16px;
+    margin: 10px auto;
+    /* Font-size = screen_width / 42, where screen_width = 100vw - 40
+       (frame width minus 2*padding). 80 chars wide = 40 * font-size,
+       so 80ch = (100vw-40) * 40/42 < screen width. Safety margin left. */
+    font-size: max(8px, calc((100vw - 40px) / 42));
+  }
   .crt-screen { border-radius: 10px; }
   .crt-bezel { padding: 4px 10px 0; }
   .crt-brand { font-size: 8px; letter-spacing: 2px; }
-  #t { padding-bottom: 24px; }
+
+  /* 2. Screen fills the frame's content area exactly — no 80ch
+     assumption. Its width is derived from the frame, not from ch. */
+  .crt-frame .crt-screen {
+    width: 100%;
+  }
+
+  /* 3. CRT children inherit the scaled font-size so that when they use
+     ch/em units (e.g. the 80ch status bar is capped by its own width,
+     and the 64ch dialog sits naturally within 100% of screen). */
+  .crt-frame #intro,
+  .crt-frame #quit-screen,
+  .crt-frame .crt-statusbar {
+    font-size: inherit;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  /* 4. Status bar fills the screen width exactly, regardless of the
+     80ch text content — text is padded, background spans the whole
+     row. */
+  .crt-frame .crt-statusbar {
+    width: 100%;
+  }
+
+  /* Standalone #intro/#quit-screen (not inside a CRT frame) */
+  body > #intro,
+  body > #quit-screen {
+    font-size: max(8px, calc((100vw - 16px) / 41));
+    padding: 4px 8px;
+  }
+
+  /* ANSI art (header banner) needs a tighter scale than body text.
+     Body text at /41 fits 82 chars; art at /48 fits ~96 chars
+     comfortably, keeping art compact while text stays readable. */
+  .ansi-art {
+    font-size: max(6px, calc((100vw - 16px) / 48));
+    display: inline-block;
+  }
 
   /* Content text (blog posts, pages) wraps on mobile so paragraphs don't
      require horizontal scrolling. The banner, menu box, and code blocks

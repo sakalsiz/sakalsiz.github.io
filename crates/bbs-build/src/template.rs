@@ -427,7 +427,7 @@ fn render_header_art(config: &SiteConfig, renderer: &Renderer) -> String {
         return String::new();
     }
     let processed = renderer.render_inline_only(art);
-    format!("<span class=\"b\">{}</span>", processed)
+    format!("<span class=\"ansi-art b\">{}</span>", processed)
 }
 
 /// Render the main menu as a 35-char-wide box with hotkey links to real URLs.
