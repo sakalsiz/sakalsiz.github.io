@@ -337,7 +337,7 @@ fn render_intro(config: &SiteConfig) -> String {
     );
 
     let dial_status_pad = pad_to(
-        "Click anywhere or press any key to dial...",
+        "Auto-dialing in 5 seconds... (or press any key)",
         INTRO_LOG_WIDTH,
     );
 

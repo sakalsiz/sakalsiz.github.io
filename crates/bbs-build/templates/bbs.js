@@ -169,9 +169,51 @@
     var phoneAttr = intro.getAttribute('data-phone-digits') || '';
     var digits = phoneAttr.split('').filter(function (c) { return c >= '0' && c <= '9'; })
       .map(function (c) { return parseInt(c, 10); });
-    intro.addEventListener('click', function () { startDial(digits); });
+
+    // Prime the audio context on the first user gesture anywhere on the
+    // page (click, key, tap). Browsers gate AudioContext creation/resume
+    // on user activation; without this, the auto-dial's setTimeout-driven
+    // sound calls would hit a suspended context and play nothing. Capture
+    // phase + once-only so this fires before any other handler and unbinds.
+    function primeOnce() {
+      audio();        // create the context inside the user gesture
+      primeAudio();   // resume it if Chrome started it suspended
+      document.removeEventListener('pointerdown', primeOnce, true);
+      document.removeEventListener('keydown', primeOnce, true);
+      document.removeEventListener('touchstart', primeOnce, true);
+    }
+    document.addEventListener('pointerdown', primeOnce, true);
+    document.addEventListener('keydown', primeOnce, true);
+    document.addEventListener('touchstart', primeOnce, true);
+
+    // Auto-dial countdown — Terminate's auto-redial behavior. Tick once per
+    // second; at zero, dial. Any click or keypress short-circuits it.
+    var countdown = 5;
+    var countdownTimer = null;
+    function tickCountdown() {
+      if (dialStarted) return;
+      if (countdown > 0) {
+        setDialStatus('Auto-dialing in ' + countdown + ' seconds... (or press any key)', 'Y');
+        countdown--;
+        countdownTimer = setTimeout(tickCountdown, 1000);
+      } else {
+        startDial(digits);
+      }
+    }
+    function cancelCountdown() {
+      if (countdownTimer) { clearTimeout(countdownTimer); countdownTimer = null; }
+    }
+    tickCountdown();
+
+    intro.addEventListener('click', function () {
+      cancelCountdown();
+      startDial(digits);
+    });
     document.addEventListener('keydown', function (e) {
-      if (!dialStarted) startDial(digits);
+      if (!dialStarted) {
+        cancelCountdown();
+        startDial(digits);
+      }
     });
   }
 
